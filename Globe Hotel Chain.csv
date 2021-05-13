@@ -1,0 +1,14 @@
+host_name,host_passport_number,room_type,number_of_nights,total_price($),check-in_date,check-out_date
+John,1234255140,Single room,10,100,3.05.2021,13.05.2021
+Jennifer,454423677,Apartments,3,300,14.07.2019,17.07.2019
+Elisabeth,6745678243,Double room,7,105,24.02.2021,3.03.2021
+LisaRoxanne,6754309871,Apartments,14,1400,7.12.2017,21.12.2017
+Laura,4563189047,Family room,8,216,30.01.2021,7.02.2021
+Chris,5674298300,Apartments,1,100,13.12.2012,14.12.2012
+Garon,7865321098,Single room,12,120,13.09.2016,25.09.2013
+Shunichi,6751230923,Single room,5,50,2.04.2013,7.04.2012
+MaryEllen,4531987006,Single room,7,70,17.05.2010,24.05.2010
+Ben,1234567890,Apartments,15,1500,4.07.2019,19.07.2019
+Lena,789068971,Family room,13,351,19.03.2020,1.04.2020
+Kate,1245907865,Double room,5,75,18.05.2014,23.05.2014
+Laurie,3091234212,Single room,4,40,5.11.2007,9.11.2007
