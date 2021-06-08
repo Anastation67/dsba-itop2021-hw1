@@ -1,0 +1,5 @@
+D:/HSE/Programming/C++/Project/build-Movies-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/Movies.dir
+D:/HSE/Programming/C++/Project/build-Movies-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+D:/HSE/Programming/C++/Project/build-Movies-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/HSE/Programming/C++/Project/build-Movies-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/Movies_autogen_timestamp_deps.dir
+D:/HSE/Programming/C++/Project/build-Movies-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/CMakeFiles/Movies_autogen.dir
