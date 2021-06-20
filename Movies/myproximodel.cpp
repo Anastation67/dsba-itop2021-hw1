@@ -5,8 +5,6 @@
 
 MyProxiModel::MyProxiModel(QObject* parent):QSortFilterProxyModel(parent)
 {
-//    minRating = 0;
-//    maxRating = INT_MAX;
     minRuntime = 0;
     maxRuntime = INT_MAX;
     minYear = 0;
@@ -18,11 +16,6 @@ MyProxiModel::MyProxiModel(QObject* parent):QSortFilterProxyModel(parent)
 
 bool MyProxiModel::filterAcceptsRow(int Row, const QModelIndex &sourceParent)const
 {
-    QModelIndex index = sourceModel()->index(Row, 6, sourceParent);
-    std::string r = sourceModel()->data(index).toString().toStdString();
-    std::replace (r.begin(), r.end(), ',', '.');
-    double rating = QString::fromStdString(r).toDouble();
-
     QModelIndex index1 = sourceModel()->index(Row, 4, sourceParent);
     int  year = sourceModel()->data(index1).toInt();
 
@@ -49,41 +42,41 @@ bool MyProxiModel::filterAcceptsRow(int Row, const QModelIndex &sourceParent)con
         return (minRuntime <= runtime) &&(runtime <= maxRuntime) &&
                 (minYear <= year) && (year <= maxYear) && (rowDirector.contains(director)); //filter by rating and runtime and year and director
     }
-
-//    if (director.trimmed().isEmpty() and  actors.trimmed().isEmpty())
-//    {
-//        return (minRating <= rating) && (rating <= maxRating) && (minRuntime <= runtime) &&(runtime <= maxRuntime) &&
-//                (minYear <= year) && (year <= maxYear); //filter by rating and runtime and year
-//    }
-//    else if (director.trimmed().isEmpty())
-//    {
-//        return (minRating <= rating) && (rating <= maxRating) && (minRuntime <= runtime) &&(runtime <= maxRuntime) &&
-//                (minYear <= year) && (year <= maxYear) && (rowActors.contains(actors)); //filter by rating and runtime and year and actors
-//    }
-//    else if (actors.trimmed().isEmpty())
-//    {
-//        return (minRating <= rating) && (rating <= maxRating) && (minRuntime <= runtime) &&(runtime <= maxRuntime) &&
-//                (minYear <= year) && (year <= maxYear) && (rowDirector.contains(director)); //filter by rating and runtime and year and director
-//    }
 }
 
 bool MyProxiModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     // returns "true" if element at the "left" goes first.
+    QModelIndex l = sourceModel()->index(left.row(), 4, left.parent());
+    QModelIndex r = sourceModel()->index(right.row(), 4, right.parent());
+    std::string dl = sourceModel()->data(l).toString().toStdString();
+    std::string dr = sourceModel()->data(r).toString().toStdString();
 
-    if (sortColumn()<6)
+    if (sortColumn() != 4)
     {
-        std::string str1 = sourceModel()->data(left).toString().toStdString();
-        std::string str2 = sourceModel()->data(right).toString().toStdString();
-        return str1 < str2;
+        if (dl == dr)
+        {
+            if (sortColumn()<6)
+            {
+                std::string str1 = sourceModel()->data(left).toString().toStdString();
+                std::string str2 = sourceModel()->data(right).toString().toStdString();
+                return str1 < str2;
+            }
+
+            std::string r1 = sourceModel()->data(left).toString().toStdString();
+            std::replace (r1.begin(), r1.end(), ',', '.');
+            std::string r2 = sourceModel()->data(right).toString().toStdString();
+            std::replace (r2.begin(), r2.end(), ',', '.');
+            return std::stod (r1) < std::stod (r2);
+        }
+        else if( dl < dr)
+        {
+            return true;
+        }
+        return false;
     }
 
-    std::string r1 = sourceModel()->data(left).toString().toStdString();
-    std::replace (r1.begin(), r1.end(), ',', '.');
-    std::string r2 = sourceModel()->data(right).toString().toStdString();
-    std::replace (r2.begin(), r2.end(), ',', '.');
-
-    return std::stod (r1) < std::stod (r2) ;
+        return dl < dr;
 }
 
 void MyProxiModel::setFilterDirector(QString director)
