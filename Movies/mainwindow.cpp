@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     csvModel->setHorizontalHeaderLabels(QStringList() << "Title" << "Genre" << "Director" << "Actors" << "Year" << "Runtime" << "Rating");
     ui->tableView->setModel(csvModel); // Устанавливаем модель в таблицу
 
+    //Setting the data for the given section in the header with the specified orientation to the value supplied.
     csvModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Title"));
     csvModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Genre"));
     csvModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Director"));
@@ -32,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     proxyModel->setSourceModel(csvModel);
 
     ui->tableView->setModel(proxyModel);
+    ui->tableView->sortByColumn(4, Qt::AscendingOrder);
     ui->tableView->setSortingEnabled(true);
 
     // MIN-MAX VALUES OF SPINBOXES
@@ -51,13 +53,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->spinBox_5->setMaximum(1500);
     ui->spinBox_5->setValue(1500);
 
-//    ui->doubleSpinBox->setMinimum(0);
-//    ui->doubleSpinBox->setMaximum(10.0);
-//    ui->doubleSpinBox->setValue(0);
-
-//    ui->doubleSpinBox_2->setMinimum(0);
-//    ui->doubleSpinBox_2->setMaximum(10.0);
-//    ui->doubleSpinBox_2->setValue(10.0);
     ui->lineEdit->setText(QString::number(proxyModel->rowCount()));
 
 }
@@ -68,7 +63,7 @@ MainWindow::~MainWindow()
     delete csvModel;
 }
 
-void MainWindow::saveAsCSV() //very suspicious function
+void MainWindow::saveAsCSV()
 {
     QString fileName = QFileDialog::getSaveFileName(this,"Save File");
     QFile f(fileName);
