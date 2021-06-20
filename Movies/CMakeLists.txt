@@ -39,8 +39,6 @@ set(PROJECT_SOURCES
         details.cpp
         details.h
         details.ui
-#        logo.cpp
-#        logo.h
         about.cpp
         about.h
         about.ui
